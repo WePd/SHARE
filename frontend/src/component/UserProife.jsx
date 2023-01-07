@@ -20,7 +20,7 @@ const notActiveBtnStyles =
 
 const UserProife = () => {
   const [user, setUser] = useState(null)
-  const [pin, setPin] = useState(null)
+  const [pins, setPins] = useState(null)
   const [text, setText] = useState("Created")
   const [activeBtn, setActiveBtn] = useState("Created")
 
@@ -30,19 +30,32 @@ const UserProife = () => {
   useEffect(() => {
     const queryMs = query(userId)
     client.fetch(queryMs).then((data) => {
-      console.log(data)
       setUser(data[0])
     })
   }, [userId])
+
+  useEffect(() => {
+    if (text === 'Created') {
+      const queryMs = userCreatedPinsQuery(userId)
+      client.fetch(queryMs).then((data) => {
+        setPins(data)
+      })
+    } else {
+      const queryMs = userSavedPinsQuery(userId)
+      client.fetch(queryMs).then((data) => {
+        setPins(data)
+      })
+    }
+  }, [userId, text])
 
   if (!user) {
     return <Spinner message={"Loading profile ...."} />
   }
 
   const logOut = () => {
-    console.log(121)
 
     localStorage.clear()
+
     navigate("/login")
   }
   return (
@@ -100,15 +113,15 @@ const UserProife = () => {
           </button>
         </div>
 
-        {/* <div className="px-2">
+        <div className="px-2">
           <MasonryLayout pins={pins} />
-        </div> */}
+        </div>
 
-        {/* {pins?.length === 0 && (
+        {pins?.length === 0 && (
           <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
             No Pins Found!
           </div>
-        )} */}
+        )}
       </div>
     </div>
   )
