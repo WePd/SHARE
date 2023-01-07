@@ -23,13 +23,13 @@ const SideBar = ({ user, closeToggle }) => {
     if(closeToggle) closeToggle(false)
   }
   return (
-    <div className="flex flex-col justify-between bg-white overflow-y-scroll   hide-scrollbar">
+    <div className="flex flex-col justify-between bg-white overflow-y-scroll  h-full hide-scrollbar">
       <div className='flex flex-col'>
         <Link to='/' onClick={handleToggle} className="flex px-5 gap-2 my-6 pt-1 w-190 items-center">
           <img src={logo} alt="logo" className='w-full'/>
         </Link>
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 h-full">
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
@@ -54,18 +54,18 @@ const SideBar = ({ user, closeToggle }) => {
 
       </div>
       {
-          user && (
-            <Link
-              to={`user-profile/${user._id}`}
-              className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
-              onClick={handleToggle}
-            >
-              <img src={user.image} className="w-10 h-10 rounded-full" alt="user-profile" />
-              <p>{user.userName}</p>
-              <IoIosArrowForward />
-            </Link>
-          )
-        }
+        user && (
+          <Link
+            to={`user-profile/${user._id}`}
+            className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
+            onClick={handleToggle}
+          >
+            <img src={user.image} className="w-10 h-10 rounded-full" alt="user-profile" />
+            <p>{user.userName}</p>
+            <IoIosArrowForward />
+          </Link>
+        )
+      }
 
     </div>
   )
