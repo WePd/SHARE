@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { AiOutlineLogout } from "react-icons/ai"
-import { googleLogout } from "@react-oauth/google"
-import { GoogleOAuthProvider } from "@react-oauth/google"
 
 import { query, userCreatedPinsQuery, userSavedPinsQuery } from "../uttils/data"
 
@@ -71,6 +69,7 @@ const UserProife = () => {
             <img
               className="rounded-full w-20 h-20 -mt-10 shadow-lg object-cover"
               src={user.image}
+              alt='user-pic'
             />
             <h1 className="font-bold text-lg text-center">{user.userName}</h1>
           </div>

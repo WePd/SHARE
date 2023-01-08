@@ -4,7 +4,6 @@ import { RiHomeFill } from "react-icons/ri"
 import { IoIosArrowForward } from "react-icons/io"
 
 import logo from "../assert/logo.png"
-import { useEffect } from "react"
 import {categories} from '../uttils/data'
 
 const isNotActiveStyle =
@@ -12,20 +11,11 @@ const isNotActiveStyle =
 const isActiveStyle =
   "flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize"
 
-// const categories = [
-//   { name: "1" },
-//   { name: "2" },
-//   { name: "3" },
-//   { name: "4" },
-//   { name: "5" },
-//   { name: "6" },
-// ]p
 const SideBar = ({ user, closeToggle }) => {
   const handleToggle = () => {
     if (closeToggle) closeToggle(false)
   }
 
-  // useEffect
   return (
     <div className="flex flex-col justify-between bg-white overflow-y-scroll  h-full hide-scrollbar">
       <div className="flex flex-col">
@@ -58,7 +48,7 @@ const SideBar = ({ user, closeToggle }) => {
               isActive ? isActiveStyle : isNotActiveStyle
             }
           >
-            <img src={ category.image}  className='h-8 w-8 rounded-full shadow-sm'/>
+            <img src={ category.image}  className='h-8 w-8 rounded-full shadow-sm' alt="category-pic"/>
             {category.name}
           </NavLink>
         ))}
